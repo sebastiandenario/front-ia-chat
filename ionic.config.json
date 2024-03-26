@@ -1,0 +1,7 @@
+{
+  "name": "front-essilor-chat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

@@ -4,6 +4,7 @@ import { getApiData, postApiData } from "../shared/services/api/apiService";
 import { useEffect, useState, useRef } from 'react';
 import { format } from 'date-fns';
 import Table from "../shared/components/table/Table";
+import ReactMarkdown from 'react-markdown';
 
 
 const Home: React.FC = () => {
@@ -120,7 +121,7 @@ const Home: React.FC = () => {
                         ))
                       )}
 
-                      {message.messageEnd && (
+                      {/* {message.messageEnd && (
                         <p>
                           <IonText slot='start' color={message.user === 'Bot' ? 'primary' : 'secondary'} style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>{message.user}</IonText>
                           {message.messageEnd.split('\n').map((line, i) => (
@@ -130,6 +131,15 @@ const Home: React.FC = () => {
                             </span>
                           ))}
                         </p>
+                      )} */}
+
+                      {message.messageEnd && (
+                        <div style={{ overflow: 'auto', whiteSpace: 'normal', width: '100%' }}>
+                          <IonText slot='start' color={message.user === 'Bot' ? 'primary' : 'secondary'} style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>{message.user}</IonText>
+                            <ReactMarkdown>
+                              {message.messageEnd}
+                            </ReactMarkdown>
+                        </div>
                       )}
 
                     </div>

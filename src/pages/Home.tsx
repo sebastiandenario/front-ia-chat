@@ -11,7 +11,7 @@ const Home: React.FC = () => {
 
   const inputRef: any = useRef();
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<{ user: string, message: string, date: string, add_type: string, add_data?: any, add_images?:any, messageEnd?:string }[]>([]);
+  const [messages, setMessages] = useState<{ user: string, message: string, date: string, add_type: string, add_data?: any, add_images?: any, messageEnd?: string }[]>([]);
   const [sequence, setSequence] = useState(1);
   const [botTyping, setBotTyping] = useState(false);
 
@@ -24,8 +24,8 @@ const Home: React.FC = () => {
       .catch(error => console.error(error));
 
     showTable([
-      {Asunto: 'TFV', Visitas: 30},
-      {Asunto: 'Visitas', Visitas: 160}
+      { Asunto: 'TFV', Visitas: 30 },
+      { Asunto: 'Visitas', Visitas: 160 }
     ]);
 
   }, []);
@@ -61,7 +61,7 @@ const Home: React.FC = () => {
     await postApiData('v1/chat/clientMessage', message)
       .then(data => {
         console.log('bot response: ', data);
-        if (data.add_type === 'table') { 
+        if (data.add_type === 'table') {
           showTable(data);
         }
         setMessages([...messages, data]);
@@ -92,13 +92,15 @@ const Home: React.FC = () => {
             <IonCol size="12">
               <IonList>
                 {messages.map((message, index) => (
-                  <IonItem key={`IonItem-${index}`}>
-                    <IonAvatar slot='start'>
+                  <IonItem key={`IonItem-${index}`} lines='none' style={{ marginTop: '10px' }}>
+                    <IonAvatar slot={message.user === 'Bot' ? 'start' : 'end'}>
                       <img src={message.user === 'Bot' ? "img/bot.avif" : "img/person.avif"} />
                     </IonAvatar>
-                    <div>
-                      <p>
-                        <IonText slot='start' color={message.user === 'Bot' ? 'primary' : 'secondary'} style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>{message.user}</IonText>
+                    {/* <div style={{width: '100%', padding: '15px 10px ', borderRadius: '10px', backgroundColor: '#48C6ED'}}> */}
+                    <div style={{ width: '70%', padding: '5px 20px', borderRadius: '20px', backgroundColor: message.user === 'Bot' ? '#48C6ED' : '#F8F8F8', marginLeft: message.user === 'Bot' ? '10px' : 'auto', marginRight: message.user === 'Bot' ? 'auto' : '10px', position: 'relative' }}>
+                      <p style={{ position: 'relative', color: message.user === 'Bot' ? 'white' : 'black' }}>
+                        {/* <IonText slot='start' color={message.user === 'Bot' ? 'primary' : 'success'} style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>{message.user}</IonText> */}
+                        <IonText slot='start' style={{ fontWeight: 'bold' }}>{message.user}<br></br></IonText>
                         {message.message.split('\n').map((line, i) => (
                           <span key={i}>
                             {line.trim()}
@@ -107,8 +109,8 @@ const Home: React.FC = () => {
                         ))}
                       </p>
 
-                      {message.add_type === 'tables' && 
-                        message.add_data.map((table:any, i:any) => (
+                      {message.add_type === 'tables' &&
+                        message.add_data.map((table: any, i: any) => (
                           <div key={`table-${i}`} style={{ overflowX: 'auto' }}>
                             <Table data={table} tableStyle={{ minWidth: '600px' }} />
                           </div>
@@ -116,7 +118,7 @@ const Home: React.FC = () => {
                       }
 
                       {message.add_type === 'images' && (
-                        message.add_images.map((image:any, i:any) => (
+                        message.add_images.map((image: any, i: any) => (
                           <img key={`image-${i}`} src={image} style={{ width: '100px', height: '100px' }} />
                         ))
                       )}
@@ -133,22 +135,23 @@ const Home: React.FC = () => {
                         </p>
                       )} */}
 
-                      {message.messageEnd && (
+                      {/* {message.messageEnd && (
                         <div style={{ overflow: 'auto', whiteSpace: 'normal', width: '100%' }}>
                           <IonText slot='start' color={message.user === 'Bot' ? 'primary' : 'secondary'} style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>{message.user}</IonText>
-                            <ReactMarkdown>
-                              {message.messageEnd}
-                            </ReactMarkdown>
+                          <ReactMarkdown>
+                            {message.messageEnd}
+                          </ReactMarkdown>
                         </div>
-                      )}
+                      )} */}
+                      <small slot='start'>{format(new Date(message.date), 'HH:mm')}</small>
 
                     </div>
 
-                   <small slot='end'>{format(new Date(message.date), 'HH:mm')}</small>        
+                    {/* <small slot='end'>{format(new Date(message.date), 'HH:mm')}</small> */}
 
                   </IonItem>
                 ))}
-                
+
                 {botTyping && (
                   <IonItem>
                     <IonAvatar slot='start'>
@@ -156,10 +159,10 @@ const Home: React.FC = () => {
                     </IonAvatar>
                     <p>
                       <IonText slot='start' color='primary' style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>Bot</IonText>
-                      <IonSpinner name="dots"></IonSpinner>    
+                      <IonSpinner name="dots"></IonSpinner>
                     </p>
-                  </IonItem>       
-                )}        
+                  </IonItem>
+                )}
 
               </IonList>
               <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>

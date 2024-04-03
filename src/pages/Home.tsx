@@ -140,14 +140,16 @@ const Home: React.FC = () => {
                   </IonItem>
                 ))}
                 {botTyping && (
-                  <IonItem>
+                  <IonItem className='alignItem'>
                     <IonAvatar slot='start'>
                       <img src={"img/bot.avif"} />
                     </IonAvatar>
-                    <p>
-                      <IonText slot='start' color='primary' style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>Bot</IonText>
-                      <IonSpinner name="dots"></IonSpinner>
-                    </p>
+                    <div className='chatBot' style={{ position: 'relative' }}>
+                      <p>
+                        <IonText slot='start' color='primary' style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>Bot</IonText>
+                        <IonSpinner name="dots"></IonSpinner>
+                      </p>
+                    </div>
                   </IonItem>
                 )}
               </IonList>

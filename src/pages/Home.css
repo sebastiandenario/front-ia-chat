@@ -1,5 +1,5 @@
 .chatBot {
-    width: 70%;
+    width: 95%;
     padding: 0px 20px;
     border-radius: 10px;
     color: #FFFFFF;
@@ -10,7 +10,7 @@
 }
 
 .chatUser {
-    width: 70%;
+    width: 95%;
     padding: 0px 20px;
     border-radius: 10px;
     background-color: #F8F8F8;

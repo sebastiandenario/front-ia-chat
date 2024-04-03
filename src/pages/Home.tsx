@@ -11,7 +11,7 @@ const Home: React.FC = () => {
 
   const inputRef: any = useRef();
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<{ user: string, message: string, date: string, add_type: string, add_data?: any, table_title?:any, table_legend?:any, add_images?:any, messageEnd?:string }[]>([]);
+  const [messages, setMessages] = useState<{ user: string, message: string, date: string, add_type: string, add_data?: any, table_title?: any, table_legend?: any, add_images?: any, messageEnd?: string }[]>([]);
   const [sequence, setSequence] = useState(1);
   const [botTyping, setBotTyping] = useState(false);
 
@@ -104,8 +104,7 @@ const Home: React.FC = () => {
                           </span>
                         ))}
                       </p>
-                      {message.add_type === 'tables' &&
-                        message.add_data.map((table: any, i: any) => (
+                      {message.add_type === 'tables' && message.add_data.map((table: any, i: any) => (
                           <div key={`table-${i}`} style={{ overflowX: 'auto' }}>
                             {message.table_title && message.table_title[i] && (
                               <ReactMarkdown>
@@ -150,14 +149,14 @@ const Home: React.FC = () => {
                   </IonItem>
                 ))}
                 {botTyping && (
-                  <IonItem className='alignItem'>
+                  <IonItem lines='none' className='alignItem'>
                     <IonAvatar slot='start'>
                       <img src={"img/bot.avif"} />
                     </IonAvatar>
                     <div className='chatBot' style={{ position: 'relative' }}>
                       <p>
-                        <IonText slot='start' color='primary' style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>Bot</IonText>
-                        <IonSpinner name="dots"></IonSpinner>
+                        {/* <IonText slot='start' color='primary' style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>Bot</IonText> */}
+                        <IonSpinner name="dots" className='colorBot'></IonSpinner>
                       </p>
                     </div>
                   </IonItem>

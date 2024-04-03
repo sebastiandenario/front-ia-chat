@@ -1,18 +1,56 @@
 .chatBot {
     width: 70%;
-    padding: 5px 20px;
+    padding: 0px 20px;
     border-radius: 20px;
+    color: #FFFFFF;
     background-color: #48C6ED;
     margin-left: 10px;
     margin-right: auto;
     position: relative;
 }
+
 .chatUser {
     width: 70%;
-    padding: 5px 20px;
+    padding: 0px 20px;
     border-radius: 20px;
     background-color: #F8F8F8;
     margin-left: auto;
     margin-right: 10px;
     position: relative;
+}
+
+.chatBot::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #48C6ED transparent transparent;
+    position: absolute;
+    left: -10px;
+    bottom: 20px;
+}
+
+.chatUser::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #F8F8F8;
+    position: absolute;
+    right: -10px;
+    bottom: 20px;
+}
+
+p {
+    margin: 15px 0px;
+}
+
+.colorBot {
+    color: #FFFFFF;
+}
+
+.colorUser {
+    color: #000000;
 }

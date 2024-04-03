@@ -96,8 +96,8 @@ const Home: React.FC = () => {
                     <IonAvatar slot={message.user === 'Bot' ? 'start' : 'end'}>
                       <img src={message.user === 'Bot' ? "img/bot.avif" : "img/person.avif"} />
                     </IonAvatar>
-                    {/* <div style={{width: '100%', padding: '15px 10px ', borderRadius: '10px', backgroundColor: '#48C6ED'}}> */}
-                    <div style={{ width: '70%', padding: '5px 20px', borderRadius: '20px', backgroundColor: message.user === 'Bot' ? '#48C6ED' : '#F8F8F8', marginLeft: message.user === 'Bot' ? '10px' : 'auto', marginRight: message.user === 'Bot' ? 'auto' : '10px', position: 'relative' }}>
+                    {/* <div style={{ width: '70%', padding: '5px 20px', borderRadius: '20px', backgroundColor: message.user === 'Bot' ? '#48C6ED' : '#F8F8F8', marginLeft: message.user === 'Bot' ? '10px' : 'auto', marginRight: message.user === 'Bot' ? 'auto' : '10px', position: 'relative' }}> */}
+                    <div className={message.user === 'Bot' ? 'chatBot' : 'chatUser'}>
                       <p style={{ position: 'relative', color: message.user === 'Bot' ? 'white' : 'black' }}>
                         {/* <IonText slot='start' color={message.user === 'Bot' ? 'primary' : 'success'} style={{ position: 'absolute', top: '0', fontWeight: 'bold' }}>{message.user}</IonText> */}
                         <IonText slot='start' style={{ fontWeight: 'bold' }}>{message.user}<br></br></IonText>

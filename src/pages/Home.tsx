@@ -16,12 +16,10 @@ const Home: React.FC = () => {
   const [botTyping, setBotTyping] = useState(false);
 
   useEffect(() => {
-    getApiData('v1/chat/init')
-      .then(data => {
-        console.log('bot response: ', data);
-        setMessages([data]);
-      })
-      .catch(error => console.error(error));
+    getApiData('v1/chat/init').then(data => {
+      console.log('bot response: ', data);
+      setMessages([data]);
+    }).catch(error => console.error(error));
 
     showTable([
       { Asunto: 'TFV', Visitas: 30 },
@@ -51,22 +49,22 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const lastMessage = messages[messages.length - 1];
-    if (lastMessage && lastMessage.user === 'Juan') {
+    (lastMessage && lastMessage.user === 'Juan') ? sendMessageApi(lastMessage) : false;
+    /* if (lastMessage && lastMessage.user === 'Juan') {
       sendMessageApi(lastMessage);
-    }
+    } */
   }, [messages]);
 
   async function sendMessageApi(message: any) {
     setBotTyping(true);
-    await postApiData('v1/chat/clientMessage', message)
-      .then(data => {
-        console.log('bot response: ', data);
-        if (data.add_type === 'table') {
-          showTable(data);
-        }
-        setMessages([...messages, data]);
-      })
-      .catch(error => console.error(error));
+    await postApiData('v1/chat/clientMessage', message).then(data => {
+      console.log('bot response: ', data);
+      data.add_type === 'table' ? showTable(data) : false;
+      /* if (data.add_type === 'table') {
+        showTable(data);
+      } */
+      setMessages([...messages, data]);
+    }).catch(error => console.error(error));
     setBotTyping(false);
   }
 

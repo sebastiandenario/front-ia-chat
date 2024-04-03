@@ -92,13 +92,13 @@ const Home: React.FC = () => {
             <IonCol size="12">
               <IonList>
                 {messages.map((message, index) => (
-                  <IonItem key={`IonItem-${index}`} lines='none' style={{ marginTop: '10px' }}>
+                  <IonItem key={`IonItem-${index}`} lines='none' className='alignItem'>
                     <IonAvatar slot={message.user === 'Bot' ? 'start' : 'end'}>
                       <img src={message.user === 'Bot' ? "img/bot.avif" : "img/person.avif"} />
                     </IonAvatar>
                     <div className={message.user === 'Bot' ? 'chatBot' : 'chatUser'} style={{ position: 'relative' }}>
-                      <p style={{ position: 'relative', color: message.user === 'Bot' ? 'white' : 'black' }}>
-                        <IonText slot='start' style={{ fontWeight: 'bold' }} className={message.user === 'Bot' ? 'colorBot' : 'colorUser'}>{message.user}<br></br></IonText>
+                      <p style={{ position: 'relative' }} className={message.user === 'Bot' ? 'colorBot' : 'colorUser'}>
+                        {/* <IonText slot='start' style={{ fontWeight: 'bold' }} className={message.user === 'Bot' ? 'colorBot' : 'colorUser'}>{message.user}</IonText> */}
                         {message.message.split('\n').map((line, i) => (
                           <span key={i} className={message.user === 'Bot' ? 'colorBot' : 'colorUser'}>
                             {line.trim()}
@@ -137,7 +137,7 @@ const Home: React.FC = () => {
                           </ReactMarkdown>
                         </div>
                       )} */}
-                      <small slot='start'>{format(new Date(message.date), 'HH:mm')}</small>
+                      <small slot='start' className={message.user === 'Bot' ? 'colorBot' : 'colorUser'}>{format(new Date(message.date), 'HH:mm')}</small>
                     </div>
                   </IonItem>
                 ))}

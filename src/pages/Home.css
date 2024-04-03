@@ -1,7 +1,7 @@
 .chatBot {
     width: 70%;
     padding: 0px 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     color: #FFFFFF;
     background-color: #48C6ED;
     margin-left: 10px;
@@ -12,7 +12,7 @@
 .chatUser {
     width: 70%;
     padding: 0px 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #F8F8F8;
     margin-left: auto;
     margin-right: 10px;
@@ -28,7 +28,7 @@
     border-color: transparent #48C6ED transparent transparent;
     position: absolute;
     left: -10px;
-    bottom: 20px;
+    bottom: 18px;
 }
 
 .chatUser::before {
@@ -40,13 +40,19 @@
     border-color: transparent transparent transparent #F8F8F8;
     position: absolute;
     right: -10px;
-    bottom: 20px;
-}
-
-p {
-    margin: 15px 0px;
+    bottom: 18px;
 }
 
 .colorBot {
     color: #FFFFFF;
+}
+
+.alignItem {
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-end;
+}
+
+p {
+    margin: 15px 0px;
 }

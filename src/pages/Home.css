@@ -1,7 +1,9 @@
-.chatBot {
+/* .chatBot { */
+.chatUser {
     max-width: 95%;
     padding: 0px 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    border-radius: 10px 10px 10px 0;
     color: #FFFFFF;
     background-color: #48C6ED;
     margin-left: 10px;
@@ -9,11 +11,26 @@
     position: relative;
 }
 
-.chatUser {
+.chatUser::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    /* border-width: 10px 10px 10px 0; */
+    border-width: 20px 10px 0px 0;
+    border-color: transparent #48C6ED transparent transparent;
+    position: absolute;
+    left: -10px;
+    /* bottom: 18px; */
+    bottom: 0px;
+}
+
+/* .chatUser { */
+.chatBot {
     max-width: 95%;
     padding: 0px 20px;
-    border-radius: 10px;
-    /* border-radius: 10px 10px 0px 10px; */
+    /* border-radius: 10px; */
+    border-radius: 10px 10px 0 10px;
     background-color: #F8F8F8;
     margin-left: auto;
     margin-right: 10px;
@@ -25,25 +42,13 @@
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent #48C6ED transparent transparent;
-    position: absolute;
-    left: -10px;
-    bottom: 18px;
-}
-
-.chatUser::before {
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 10px 0 10px 10px;
-    /* border-width: 10px 0 0px 10px; */
+    /* border-width: 10px 0 10px 10px; */
+    border-width: 20px 0 0 10px;
     border-color: transparent transparent transparent #F8F8F8;
     position: absolute;
     right: -10px;
-    bottom: 18px;
-    /* bottom: 0px; */
+    /* bottom: 18px; */
+    bottom: 0px;
 }
 
 .colorBot {
